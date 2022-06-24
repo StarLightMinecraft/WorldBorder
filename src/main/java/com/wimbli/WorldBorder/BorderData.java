@@ -277,7 +277,7 @@ public class BorderData
 
 		yLoc = getSafeY(loc.getWorld(), ixLoc, Location.locToBlock(yLoc), izLoc, flying);
 		if (yLoc == -1)
-			return null;
+			return loc; // simply return the original location if the safe Y is not found
 
 		return new Location(loc.getWorld(), Math.floor(xLoc) + 0.5, yLoc, Math.floor(zLoc) + 0.5, loc.getYaw(), loc.getPitch());
 	}
@@ -435,7 +435,7 @@ public class BorderData
 		// make sure Y values are within the boundaries of the world.
 		if (Y > limTop)
 		{
-			if (isNether) 
+			if (isNether)
 				Y = limTop; // because of the roof, the nether can not rely on highestBlockBoundary, so limTop has to be used
 			else
 			{
